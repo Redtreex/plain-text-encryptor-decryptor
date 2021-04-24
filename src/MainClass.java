@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class MainClass {
     public static void main(String[] args) {
         String message = "";
-        /*
+        /**
         * set your txt file Path which contains plain text filePath variable
-        * */
+        */
         String filePath = "D:\\Github\\Java Projects\\EncryptorDecryptor\\src\\originalText.txt";
         try{
             File myFile = new File(filePath);
