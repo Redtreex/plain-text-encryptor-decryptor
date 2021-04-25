@@ -1,4 +1,6 @@
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * This class contains two methods only encryption and decryption
@@ -31,6 +33,8 @@ public class EncryptDecrypt {
                 changed_values = changed_values+" "+old+"="+latest+",";
                 headerKeys = headerKeys +latest;
                 tailValues = tailValues +old;
+                System.out.println("old: "+old+" ,latest: "+latest);
+                System.out.println(message);
             }
         }
         message = headerKeys + message + tailValues;
@@ -42,8 +46,21 @@ public class EncryptDecrypt {
      * this method returns takes encrypted message String returns the decrypted message
      */
     public String decryption(String encrypted) {
+        String message = encrypted;
+        int leftChars = Integer.parseInt(message.substring(0,2));
+        message = message.substring(2);
+        int length = 81-leftChars;
+        String keyString = message.substring(0,length);
+        String valueString = message.substring(message.length()-length);
+        message = message.substring(length,message.length()-length);
 
-        return null;
+        for (int i = length-1; i >= 0; i--) {
+            message = message.replaceAll(keyString.charAt(i)+"",valueString.charAt(i)+"");
+            //System.out.println(message);
+        }
+
+        System.out.println(length+" "+ keyString.length()+" "+valueString.length());
+        return message;
     }
 
 }
